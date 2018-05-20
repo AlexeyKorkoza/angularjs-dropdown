@@ -1,0 +1,34 @@
+{
+  "name": "angular-dropdown",
+  "version": "1.0.0",
+  "description": "Angular",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexeyKorkoza/angular-dropdown.git"
+  },
+  "keywords": [
+    "angularjs",
+    "dropdown"
+  ],
+  "author": "AlexeyKorkoza",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AlexeyKorkoza/angular-dropdown/issues"
+  },
+  "homepage": "https://github.com/AlexeyKorkoza/angular-dropdown#readme",
+  "dependencies": {
+    "angular": "^1.7.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.3",
+    "eslint": "^4.16.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-angular": "^3.2.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jasmine": "^2.9.1"
+  }
+}
