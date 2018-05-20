@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Angular Dropdown Demo</title>
+    <link rel="stylesheet" href="../src/angular-dropdown.css">
+</head>
+<body ng-app="angularDropdownDemo">
+<div ng-controller="angularDropdownDemoCtrl">
+    <angular-dropdown
+            dd-data="vm.clubs"
+            dd-label="name"
+            dd-placeholder="Select football club"
+            dd-filter="vm.select"
+            dd-model="vm.selectedClub"
+    ></angular-dropdown>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.0/angular.min.js"></script>
+<script src="../src/angular-dropdown.js"></script>
+<script>
+    angular
+        .module('angularDropdownDemo', ['angularDropdown'])
+        .controller('angularDropdownDemoCtrl', angularDropdownDemoCtrl);
+
+    function angularDropdownDemoCtrl() {
+        const vm = this;
+        vm.clubs = [];
+        vm.selectedClub = [];
+        vm.activate = activate;
+        vm.select = select;
+
+        activate();
+
+        function activate() {
+            vm.clubs = [
+                {
+                    id: 1,
+                    name: 'Liverpool',
+                },
+                {
+                    id: 2,
+                    name: 'Chelsea',
+                },
+                {
+                    id: 3,
+                    name: 'Arsenal',
+                },
+                {
+                    id: 4,
+                    name: 'Everton',
+                },
+                {
+                    id: 5,
+                    name: 'Spurs',
+                }
+            ];
+            vm.selectedClub = vm.clubs[0];
+        }
+
+        function select(club) {
+            console.log('Selected club', club);
+        }
+    }
+</script>
+</body>
+</html>

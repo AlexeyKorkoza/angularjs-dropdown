@@ -1,3 +1,23 @@
+const template = `
+    <div class="dropdown-wrapper" ng-class="{'-is-open': isOpen}">
+    <div class="dropdown-button" ng-click="toggle()">
+        <span ng-if="ddModel.length">{{title}}</span>
+        <span ng-if="!ddModel.length">{{placeholder}}</span>
+    </div>
+    <ul class="dropdown-list">
+        <li class="dropdown-list__item" ng-if="multiple">
+            <a class="dropdown-list__link" ng-click="selectAll()">Select All</a>
+        </li>
+        <li class="dropdown-list__item" ng-if="multiple">
+            <a class="dropdown-list__link" ng-click="deselectAll()">Deselect All</a>
+        </li>
+        <li class="dropdown-list__item" ng-repeat="item in list">
+            <a class="dropdown-list__link" ng-class="{'-is-active': item.selected}" ng-click="selectItem(item)">{{item[label]}}</a>
+        </li>
+    </ul>
+</div>
+`;
+
 const changeTitle = (data, label) =>
     data
         .map(x => x[label])
@@ -9,7 +29,7 @@ angular
 
 function angularDropdown() {
     const directive = {
-        templateUrl: './angular-dropdown.html',
+        template,
         replace: true,
         restrict: 'EA',
         scope: {
@@ -33,6 +53,7 @@ function angularDropdown() {
         scope.label = scope.ddLabel || 'label';
         scope.isOpen = false;
         scope.title = '';
+        console.log('scope', scope);
         scope.list = scope.ddData.map(item => {
             item.selected = false;
             return item;
