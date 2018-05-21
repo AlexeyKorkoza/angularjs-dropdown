@@ -8,11 +8,11 @@
 <body ng-app="angularDropdownDemo">
 <div ng-controller="angularDropdownDemoCtrl">
     <angular-dropdown
-            dd-data="vm.clubs"
+            dd-data="clubs"
             dd-label="name"
             dd-placeholder="Select football club"
-            dd-filter="vm.select"
-            dd-model="vm.selectedClub"
+            dd-click="selectClick"
+            dd-model="selectedClub"
     ></angular-dropdown>
 </div>
 
@@ -23,17 +23,16 @@
         .module('angularDropdownDemo', ['angularDropdown'])
         .controller('angularDropdownDemoCtrl', angularDropdownDemoCtrl);
 
-    function angularDropdownDemoCtrl() {
-        const vm = this;
-        vm.clubs = [];
-        vm.selectedClub = [];
-        vm.activate = activate;
-        vm.select = select;
+    function angularDropdownDemoCtrl($scope) {
+        $scope.clubs = [];
+        $scope.selectedClub = [];
+        $scope.activate = activate;
+        $scope.selectClick = selectClick;
 
         activate();
 
         function activate() {
-            vm.clubs = [
+            $scope.clubs = [
                 {
                     id: 1,
                     name: 'Liverpool',
@@ -55,10 +54,13 @@
                     name: 'Spurs',
                 }
             ];
-            vm.selectedClub = vm.clubs[0];
+            $scope.selectedClub.push({
+                id: $scope.clubs[0].id,
+                name: $scope.clubs[0].name,
+            });
         }
 
-        function select(club) {
+        function selectClick(club) {
             console.log('Selected club', club);
         }
     }
