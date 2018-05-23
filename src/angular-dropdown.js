@@ -33,12 +33,14 @@ function angularDropdown() {
         replace: true,
         restrict: 'EA',
         scope: {
-            ddModel: '=',
+            ddInit: '=',
             ddData: '=',
             ddPlaceholder: '@',
             ddMultiple: '=',
             ddValue: '@',
             ddClick: '=',
+            ddSelectAll: '=',
+            ddDeselectAll: '=',
             ddLabel: '@'
         },
         link,
@@ -51,9 +53,16 @@ function angularDropdown() {
         scope.multiple = scope.ddMultiple || false;
         scope.value = scope.ddValue || 'id';
         scope.label = scope.ddLabel || 'label';
+        scope.ddModel = [];
+        if(scope.ddInit) {
+            // Fix default value
+            scope.ddModel = [].concat(scope.ddInit);
+            changeTitle(scope.ddModel, scope.label);
+        }
+
         scope.isOpen = false;
         scope.title = '';
-        console.log('scope', scope);
+
         scope.list = scope.ddData.map(item => {
             item.selected = false;
             return item;
@@ -102,6 +111,16 @@ function angularDropdown() {
             scope.list
                 .filter(x => x[scope.value] === item[scope.value])
                 .filter(x => x.selected === false ? scope.addItem(item) : scope.removeItem(item));
+            if (!scope.multiple) {
+                scope.list
+                    .map(x => {
+                        if (x[scope.value] !== item[scope.value]) {
+                            x.selected = false;
+                            return x;
+                        }
+                        return x;
+                    });
+            }
             scope.ddModel = scope.list.filter(x => x.selected);
             changeTitle(scope.ddModel, scope.label);
             if (scope.ddClick) {
@@ -110,26 +129,26 @@ function angularDropdown() {
         };
 
         scope.selectAll = () => {
-            scope.list.map(item => {
-                item.selected = true;
-                return item;
-            });
-            scope.ddModel = scope.list.filter(x => x.selected);
-            changeTitle(scope.ddModel, scope.label);
-            if (scope.ddClick) {
-                scope.ddClick(scope.ddModel);
+            if (scope.multiple) {
+                scope.list.map(item => {
+                    item.selected = true;
+                    return item;
+                });
+                scope.ddModel = scope.list.filter(x => x.selected);
+                changeTitle(scope.ddModel, scope.label);
+                scope.ddSelectAll(scope.ddModel);
             }
         };
 
         scope.deselectAll = () => {
-            scope.ddModel = [];
-            scope.list.map(item => {
-                item.selected = false;
-                return item;
-            });
-            changeTitle(scope.ddModel, scope.label);
-            if (scope.ddClick) {
-                scope.ddClick(scope.ddModel);
+            if (scope.multiple) {
+                scope.ddModel = [];
+                scope.list.map(item => {
+                    item.selected = false;
+                    return item;
+                });
+                changeTitle(scope.ddModel, scope.label);
+                scope.ddDeselectAll();
             }
         }
     }
