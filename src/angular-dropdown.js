@@ -33,7 +33,7 @@ function angularDropdown() {
         replace: true,
         restrict: 'EA',
         scope: {
-            ddInit: '=',
+            ddModel: '=',
             ddData: '=',
             ddPlaceholder: '@',
             ddMultiple: '=',
@@ -53,15 +53,13 @@ function angularDropdown() {
         scope.multiple = scope.ddMultiple || false;
         scope.value = scope.ddValue || 'id';
         scope.label = scope.ddLabel || 'label';
-        scope.ddModel = [];
-        if(scope.ddInit) {
-            // Fix default value
-            scope.ddModel = [].concat(scope.ddInit);
-            changeTitle(scope.ddModel, scope.label);
+        scope.title = '';
+
+        if(scope.ddModel && scope.ddModel.length) {
+            scope.title = changeTitle(scope.ddModel, scope.label);
         }
 
         scope.isOpen = false;
-        scope.title = '';
 
         scope.list = scope.ddData.map(item => {
             item.selected = false;
@@ -122,7 +120,7 @@ function angularDropdown() {
                     });
             }
             scope.ddModel = scope.list.filter(x => x.selected);
-            changeTitle(scope.ddModel, scope.label);
+            scope.title = changeTitle(scope.ddModel, scope.label);
             if (scope.ddClick) {
                 scope.ddClick(scope.ddModel);
             }
@@ -135,7 +133,7 @@ function angularDropdown() {
                     return item;
                 });
                 scope.ddModel = scope.list.filter(x => x.selected);
-                changeTitle(scope.ddModel, scope.label);
+                scope.title = changeTitle(scope.ddModel, scope.label);
                 scope.ddSelectAll(scope.ddModel);
             }
         };
@@ -147,7 +145,7 @@ function angularDropdown() {
                     item.selected = false;
                     return item;
                 });
-                changeTitle(scope.ddModel, scope.label);
+                scope.title = changeTitle(scope.ddModel, scope.label);
                 scope.ddDeselectAll();
             }
         }
