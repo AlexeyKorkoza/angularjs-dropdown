@@ -38,9 +38,9 @@ function angularDropdown() {
             ddPlaceholder: '@',
             ddMultiple: '=',
             ddValue: '@',
-            ddClick: '=',
-            ddSelectAll: '=',
-            ddDeselectAll: '=',
+            ddClick: '&',
+            ddSelectAll: '&',
+            ddDeselectAll: '&',
             ddLabel: '@'
         },
         link,
@@ -121,9 +121,7 @@ function angularDropdown() {
             }
             scope.ddModel = scope.list.filter(x => x.selected);
             scope.title = changeTitle(scope.ddModel, scope.label);
-            if (scope.ddClick) {
-                scope.ddClick(scope.ddModel);
-            }
+            scope.ddClick();
         };
 
         scope.selectAll = () => {
@@ -134,7 +132,7 @@ function angularDropdown() {
                 });
                 scope.ddModel = scope.list.filter(x => x.selected);
                 scope.title = changeTitle(scope.ddModel, scope.label);
-                scope.ddSelectAll(scope.ddModel);
+                scope.ddSelectAll();
             }
         };
 
