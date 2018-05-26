@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Angular Dropdown Demo</title>
+    <link rel="stylesheet" href="../src/angular-dropdown.css">
+</head>
+<body ng-app="angularDropdownDemo">
+<div ng-controller="angularDropdownDemoCtrl">
+    <angular-dropdown
+            dd-data="clubs"
+            dd-label="name"
+            dd-placeholder="Select football club"
+            dd-click="selectClick(item)"
+            dd-model="selectedClub"
+    ></angular-dropdown>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.0/angular.min.js"></script>
+<script src="../src/angular-dropdown.js"></script>
+<script>
+    angular
+        .module('angularDropdownDemo', ['angularDropdown'])
+        .controller('angularDropdownDemoCtrl', angularDropdownDemoCtrl);
+
+    function angularDropdownDemoCtrl($scope) {
+        $scope.clubs = [];
+        $scope.selectedClub = [];
+        $scope.activate = activate;
+        $scope.selectClick = selectClick;
+
+        activate();
+
+        function activate() {
+            $scope.clubs = [
+                {
+                    id: 1,
+                    name: 'Liverpool',
+                },
+                {
+                    id: 2,
+                    name: 'Chelsea',
+                },
+                {
+                    id: 3,
+                    name: 'Arsenal',
+                },
+                {
+                    id: 4,
+                    name: 'Everton',
+                },
+                {
+                    id: 5,
+                    name: 'Spurs',
+                }
+            ];
+            $scope.selectedClub.push({
+                id: $scope.clubs[0].id,
+                name: $scope.clubs[0].name,
+            });
+        }
+
+        function selectClick(club) {
+           console.log('Selected club', club);
+        }
+    }
+</script>
+</body>
+</html>
