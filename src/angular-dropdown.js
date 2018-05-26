@@ -119,9 +119,15 @@ function angularDropdown() {
                         return x;
                     });
             }
-            scope.ddModel = scope.list.filter(x => x.selected);
+            scope.ddModel = scope.list
+                .filter(x => x.selected)
+                .map(x => {
+                    delete x.selected;
+                    delete x['$$hashKey'];
+                    return x;
+                });
             scope.title = changeTitle(scope.ddModel, scope.label);
-            scope.ddClick();
+            scope.ddClick({ item: scope.ddModel });
         };
 
         scope.selectAll = () => {
@@ -130,9 +136,15 @@ function angularDropdown() {
                     item.selected = true;
                     return item;
                 });
-                scope.ddModel = scope.list.filter(x => x.selected);
+                scope.ddModel = scope.list
+                    .filter(x => x.selected)
+                    .map(x => {
+                        delete x.selected;
+                        delete x['$$hashKey'];
+                        return x;
+                    });
                 scope.title = changeTitle(scope.ddModel, scope.label);
-                scope.ddSelectAll();
+                scope.ddSelectAll({ item: scope.ddModel });
             }
         };
 
@@ -144,7 +156,7 @@ function angularDropdown() {
                     return item;
                 });
                 scope.title = changeTitle(scope.ddModel, scope.label);
-                scope.ddDeselectAll();
+                scope.ddDeselectAll({ item: scope.ddModel });
             }
         }
     }

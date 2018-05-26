@@ -11,7 +11,7 @@
             dd-data="clubs"
             dd-label="name"
             dd-placeholder="Select football club"
-            dd-click="selectClick()"
+            dd-click="selectClick(item)"
             dd-model="selectedClub"
     ></angular-dropdown>
 </div>
@@ -61,10 +61,9 @@
             });
         }
 
-        function selectClick() {
-           // Different data
-           console.log('Selected club', $scope.selectedClub);
-           console.log('Scope', $scope);
+        function selectClick(club) {
+           console.log('Selected club', club);
+           console.log('Selected club', $scope);
         }
     }
 </script>
