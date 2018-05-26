@@ -62,7 +62,8 @@ function angularDropdown() {
         scope.isOpen = false;
 
         scope.list = scope.ddData.map(item => {
-            item.selected = false;
+            const result = scope.ddModel.find(x => x[scope.value] === item[scope.value]);
+            item.selected = !!result;
             return item;
         });
 
@@ -120,12 +121,7 @@ function angularDropdown() {
                     });
             }
             scope.ddModel = scope.list
-                .filter(x => x.selected)
-                .map(x => {
-                    delete x.selected;
-                    delete x['$$hashKey'];
-                    return x;
-                });
+                .filter(x => x.selected);
             scope.title = changeTitle(scope.ddModel, scope.label);
             scope.ddClick({ item: scope.ddModel });
         };
@@ -137,12 +133,7 @@ function angularDropdown() {
                     return item;
                 });
                 scope.ddModel = scope.list
-                    .filter(x => x.selected)
-                    .map(x => {
-                        delete x.selected;
-                        delete x['$$hashKey'];
-                        return x;
-                    });
+                    .filter(x => x.selected);
                 scope.title = changeTitle(scope.ddModel, scope.label);
                 scope.ddSelectAll({ item: scope.ddModel });
             }
