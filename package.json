@@ -2,7 +2,7 @@
   "name": "angular-dropdown",
   "version": "1.0.0",
   "description": "Angular",
-  "main": "index.js",
+  "main": "./src/angular-dropdown.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
