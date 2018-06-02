@@ -1,3 +1,6 @@
+/*
+    Dropdown styles
+*/
 .dropdown-wrapper {
     position: relative;
     display: inline-block;
@@ -5,7 +8,7 @@
 
 .dropdown-button {
     width: 170px;
-    background: rgb(76, 175, 80);
+    background: #4caf50;
     color: white;
     padding: 16px;
     border: none;
@@ -20,28 +23,39 @@
 .dropdown-list {
     display: none;
     position: absolute;
-    background: #ffffff;
-    padding-left: 0;
-    text-align: center;
-    width: 170px;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     z-index: 1;
+    background: rgb(76, 175, 80);
+    width: 202px;
+    padding-left: 0;
+    margin: 0;
+    text-align: center;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
 .dropdown-list__item {
+    border-top: 1px solid #962d22;
     list-style: none;
 }
 
 .dropdown-list__item:hover {
+    background: #fff;
     cursor: pointer;
 }
 
+.dropdown-list__item:hover .dropdown-list__link {
+    color: #4caf50;
+}
+
 .dropdown-list__link {
-    color: #6DBDD6;
+    color: #fff;
     font-size: 14px;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+    -moz-transition: all 0.15s ease-in;
+    -o-transition: all 0.15s ease-in;
+    -webkit-transition: all 0.15s ease-in;
+    transition: all 0.15s ease-in;
 }
 
 .dropdown-list__link .-is-active {

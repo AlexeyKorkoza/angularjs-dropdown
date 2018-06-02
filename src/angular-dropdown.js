@@ -21,7 +21,7 @@ const template = `
 const changeTitle = (data, label) =>
     data
         .map(x => x[label])
-        .join(',');
+        .join(', ');
 
 angular
     .module('angularDropdown', [])
