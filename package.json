@@ -1,7 +1,7 @@
 {
   "name": "angular-dropdown",
   "version": "1.0.0",
-  "description": "Angular",
+  "description": "A simple directive for using in your angular applications",
   "main": "./src/angular-dropdown.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
