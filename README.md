@@ -15,8 +15,8 @@ npm install angularjs-dropdown
 2. Import ```angularDropdown``` as a dependecy in your project
 
 ```
-    angular
-        .module('nameOfModule', ['angularDropdown'])
+angular
+  .module('nameOfModule', ['angularDropdown'])
 ```
 
 3. Add the directive to your html
