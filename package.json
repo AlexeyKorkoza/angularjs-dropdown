@@ -1,5 +1,5 @@
 {
-  "name": "angular-dropdown",
+  "name": "angularjs-dropdown",
   "version": "1.0.0",
   "description": "A simple directive for using in your angular applications",
   "main": "./src/angular-dropdown.js",
