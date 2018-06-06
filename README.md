@@ -1,11 +1,11 @@
-# angular-dropdown
+# angularjs-dropdown
 
 A simple directive for using in your angular applications
 
 ## Install
 
 ```
-npm install angular-dropdown
+npm install angularjs-dropdown
 ```
 
 ## Usage
