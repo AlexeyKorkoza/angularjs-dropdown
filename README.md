@@ -2,6 +2,12 @@
 
 A simple directive for using in your angular applications
 
+## Demo
+
+Demos are in ```demo``` folder. 
+
+Open any demo file in browser and begin to use.
+
 ## Install
 
 ```
@@ -77,12 +83,6 @@ Type: `function`<br>
 
 Handler of click on items of the dropdown.<br>
 Type: `function`<br>
-
-## Demo
-
-Demos are in ```demo``` folder. 
-
-Open any demo file in browser and begin to use.
 
 ## License
 
