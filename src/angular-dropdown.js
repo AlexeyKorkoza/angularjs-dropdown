@@ -49,7 +49,9 @@ function angularDropdown() {
     return directive;
 
     function link(scope, element) {
+        // console.log('SCOPE', scope);
         scope.placeholder = scope.ddPlaceholder || 'Select ...';
+        // console.log('placeholder', scope.placeholder)
         scope.multiple = scope.ddMultiple || false;
         scope.value = scope.ddValue || 'id';
         scope.label = scope.ddLabel || 'label';
