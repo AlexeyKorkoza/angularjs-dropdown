@@ -84,6 +84,13 @@ Type: `function`<br>
 Handler of click on items of the dropdown.<br>
 Type: `function`<br>
 
+## Test
+
+You can run the tests: <br>
+```
+npm run test
+```
+
 ## License
 
 MIT
