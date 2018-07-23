@@ -1,34 +1,35 @@
 describe('Test angularjs-dropdown', () => {
-    let elm, scope;
+    let element, scope, compile, test;
 
     beforeEach(module('angularDropdown'));
 
-    beforeEach(inject(($rootScope, $compile) => {
-        elm = angular.element(
-            '<div>' +
-            '<angular-dropdown dd-data="clubs" dd-label="name" dd-placeholder="Select football club"' +
-            'dd-click="selectClick(item)" dd-model="selectedClub" >' +
-            '</angular-dropdown>' +
-            '</div>');
-
+    beforeEach(inject(($compile, $rootScope) => {
         scope = $rootScope.$new();
 
-        scope.customMessage = '<div class="custom-message">foo</div>';
         scope.clubs = [
             { id: 1, label: 'Arsenal' },
             { id: 2, label: 'Liverpool' }
         ];
-        $compile(elm)(scope);
+        scope.selectedClub = [];
+
+        element = angular.element(
+            '<angular-dropdown dd-data="clubs" dd-label="name" dd-placeholder="Select football club"' +
+            'dd-click="selectClick(item)" dd-model="selectedClub" >' +
+            '</angular-dropdown>');
+
+        $compile(element)(scope);
         scope.$digest();
     }));
 
-    it('should create items', () => {
-        const items = elm.find('.dropdown-list__link');
-        expect(items.length).toBe(2);
+    it('should display custom placeholder', () => {
+        expect(element.isolateScope().ddPlaceholder).toEqual('Select football club');
+    });
 
-        // could be defined into a test for itself
-        // avoid multiple asserts - this is only for demonstration
-        expect(items.eq(0).text()).toContain('Arsenal');
-        expect(items.eq(1).text()).toContain('Liverpool');
+    it('should check labels in clubs', () => {
+        const items = element.isolateScope().ddData;
+        const firstItemLabel = items[0].label;
+        const lastItemLabel = items[1].label;
+        expect(firstItemLabel).toEqual('Arsenal');
+        expect(lastItemLabel).toEqual('Liverpool');
     });
 });

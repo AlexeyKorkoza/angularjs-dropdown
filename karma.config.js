@@ -10,6 +10,7 @@ module.exports = config => {
         concurrency: Infinity,
         files: [
             'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.0/angular.min.js',
+            'https://cdnjs.cloudflare.com/ajax/libs/angular-mocks/1.7.0/angular-mocks.js',
             './src/angular-dropdown.js',
             './test/*.spec.js',
         ],
